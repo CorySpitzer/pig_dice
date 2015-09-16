@@ -21,6 +21,8 @@ Game.prototype.toggle = function() {
   } else {
     this.whoseTurn = 1;
   }
+  $(".player1").toggleClass("well");
+  $(".player2").toggleClass("well");
 }
 
 Game.prototype.winner = function() {
@@ -33,6 +35,12 @@ Game.prototype.winner = function() {
   }
 }
 
+// function toggleTurn(player) {
+//   if player ===
+//   $(".player1").toggleClass("well");
+//   $(".player2").toggleClass("well");
+// }
+
 $(document).ready(function() {
   var game = new Game();
   game.total = 0;
@@ -44,37 +52,30 @@ $(document).ready(function() {
       if (game.whoseTurn === 1) {
         game.toggle();
         game.total = 0;
-        $(".player1").toggleClass("well");
-        $(".player2").toggleClass("well");
       } else {
         game.toggle();
         game.total = 0;
-        $(".player2").toggleClass("well");
-        $(".player1").toggleClass("well");
       }
     }
     $(".total").text(game.total);
   });
 
   $("#hold").click(function() {
-    console.log(game.winner());
-    console.log(game.winner);
-    if (game.winner()){
-      $('#winner').text(game.winner());
-    } else {
-      if (game.whoseTurn === 1) {
-        game.player1score += game.total;
-        $("#player1").text(game.player1score);
-        $(".player1").toggleClass("well");
-        $(".player2").toggleClass("well");
-        game.toggle();
-      } else {
-        game.player2score += game.total;
-        $("#player2").text(game.player2score);
-        $(".player2").toggleClass("well");
-        $(".player1").toggleClass("well");
-        game.toggle();
+    if (game.whoseTurn === 1) {
+      game.player1score += game.total;
+      $("#player1").text(game.player1score);
+      if (game.winner()){
+        console.log('game winner true');
+        $('#winner').text(game.winner());
       }
+      game.toggle();
+    } else {
+      game.player2score += game.total;
+      if (game.winner()){
+        $('#winner').text(game.winner());
+      }
+      $("#player2").text(game.player2score);
+      game.toggle();
       game.total = 0;
       $(".total").text(game.total);
     }
