@@ -1,8 +1,8 @@
-function BankAccount(memberName,initialDeposit) {
-  this.memberName = memberName;
-  this.initialDeposit = initialDeposit;
-}
 
 function Game() {
   this.turn = 0;
+}
+
+function Player() {
+  this.score = 0;
 }
