@@ -29,10 +29,15 @@
         <p>
           total: <span class='total'>0</span>
         </p>
-        <button class="btn btn-warning" id="roll">Roll</button>
-        <button class="btn btn-success" id="hold">Hold</button>
+        <div class="playing">
+          <button class="btn btn-warning" id="roll">Roll</button>
+          <button class="btn btn-success" id="hold">Hold</button>
+        </div>
+        <div class="not-playing">
+          <button class="btn btn-primary" id="play-again">Play Again?</button>
+        </div>
         <h3>
-          <span id='winner'></span>
+          <span class="not-playing" id='winner'></span>
         </h3>
       </div>
     </div>

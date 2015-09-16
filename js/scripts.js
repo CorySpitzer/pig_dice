@@ -34,6 +34,8 @@ Game.prototype.toggle = function() {
   }
   if (this.winner()){
     $('#winner').text("Winner" + this.winner());
+    $('.playing').hide();
+    $('.not-playing').show();
   }
   $(".player1").toggleClass("well");
   $(".player2").toggleClass("well");
@@ -54,6 +56,7 @@ Game.prototype.winner = function() {
 
 
 $(document).ready(function() {
+
   var game = new Game();
   $("#roll").click(function() {
     var roll = randomInt(1,7);
@@ -69,4 +72,14 @@ $(document).ready(function() {
   $("#hold").click(function() {
     game.toggle();
   });
+  playing = false;
+  $('#play-again').click(function() {
+    game.player1.score = 0;
+    game.player2.score = 0;
+    $(".score").text(0);
+    game.turnTotal = 0;
+    $('.playing').show();
+    $('.not-playing').hide();
+  });
+
 });
