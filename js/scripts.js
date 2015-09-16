@@ -24,9 +24,9 @@ Game.prototype.toggle = function() {
 }
 
 Game.prototype.winner = function() {
-  if (this.player1score >= 100) {
+  if (this.player1score >= 10) {
     return 1;
-  } else if (this.player2score >= 100) {
+  } else if (this.player2score >= 10) {
     return 2;
   } else {
     return false;
@@ -36,8 +36,6 @@ Game.prototype.winner = function() {
 $(document).ready(function() {
   var game = new Game();
   game.total = 0;
-  var player1Score = 0;
-  var player2Score = 0;
   $("#roll").click(function() {
     var roll = randomInt(1,7);
     $("#die-roll").text(roll);
@@ -59,24 +57,26 @@ $(document).ready(function() {
   });
 
   $("#hold").click(function() {
-    if (! game.winner){
+    console.log(game.winner());
+    console.log(game.winner);
+    if (game.winner()){
+      $('#winner').text(game.winner());
+    } else {
       if (game.whoseTurn === 1) {
-        player1Score += game.total;
-        $("#player1").text(player1Score);
+        game.player1score += game.total;
+        $("#player1").text(game.player1score);
         $(".player1").toggleClass("well");
         $(".player2").toggleClass("well");
         game.toggle();
       } else {
-        player2Score += game.total;
-        $("#player2").text(player2Score);
+        game.player2score += game.total;
+        $("#player2").text(game.player2score);
         $(".player2").toggleClass("well");
         $(".player1").toggleClass("well");
         game.toggle();
       }
       game.total = 0;
       $(".total").text(game.total);
-    } else {
-      $('#winner').text(game.winner);
     }
 
   });

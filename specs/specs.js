@@ -30,4 +30,9 @@ describe('Game', function () {
     game.player1score = 100;
     expect(game.winner()).to.equal(1);
   });
+
+  it("does not set a winner before 100 points", function() {
+    var game = new Game();
+    expect(game.winner()).equal(false);
+  });
 });
