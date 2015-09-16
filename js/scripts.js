@@ -2,6 +2,7 @@ function Player(number) {
   this.score = 0;
   this.turnTotal = 0;
   this.number = number;
+  this.auto = false;
 }
 
 Player.prototype.takeTurn = function() {
@@ -27,6 +28,10 @@ Game.prototype.toggle = function() {
     this.player1.score += this.turnTotal;
     this.whoseTurn = 2;
     $("#player1").text(this.player1.score)
+    if ((this.whoseTurn) === 2 && (this.player2.auto === true)) {
+      this.turnTotal = this.autoDiceRoll();
+      this.toggle();
+    }
   } else {
     this.player2.score += this.turnTotal;
     this.whoseTurn = 1;
@@ -98,13 +103,18 @@ $(document).ready(function() {
     game.toggle();
   });
 
-  $("#computer").click(function() {
+  $("#auto").click(function() {
     game.autoTurn();
   });
 
   playing = false;
-  $('#play-again').click(function() {
+  $('#play-human').click(function() {
     game.reset();
+  });
+
+  $('#play-computer').click(function() {
+    game.reset();
+    game.player2.auto = true;
   });
 
 });

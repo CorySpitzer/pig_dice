@@ -1,11 +1,7 @@
-.not-playing {
+.playing {
   display: none;
 }
 
 .gray {
   background-color: rgb(150,150,150);
 }
-
-/*.playing {
-  display: none;
-}*/
