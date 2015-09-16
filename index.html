@@ -8,20 +8,30 @@
   </head>
   <body>
     <div class="container">
-      <p>
-        player1: <span id='player1' class='score'>0</span>
-      </p>
-      <p>
-        player2: <span id='player2' class='score'>0</span>
-      </p>
-      <p>
-        die roll: <span id='die-roll'></span>
-      </p>
-      <p>
-        total: <span class='total'>0</span>
-      </p>
-      <button id="roll">Roll</button>
-      <button id="hold">Hold</button>
+      <div class="jumbotron">
+        <h1>Roll the dice</h1>
+        <div class="row">
+          <div class="col-md-3 well player1">
+            <p>
+              player1: <span id='player1' class='score'>0</span>
+            </p>
+          </div>
+          <div class="col-md-3 player2">
+            <p>
+              player2: <span id='player2' class='score'>0</span>
+            </p>
+          </div>
+        </div>
+
+        <p>
+          die roll: <span id='die-roll'></span>
+        </p>
+        <p>
+          total: <span class='total'>0</span>
+        </p>
+        <button class="btn btn-warning" id="roll">Roll</button>
+        <button class="btn btn-success" id="hold">Hold</button>
+      </div>
     </div>
   </body>
 </html>

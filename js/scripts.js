@@ -1,6 +1,9 @@
 
 function Game() {
   this.whoseTurn = 1;
+  this.player1score = 0;
+  this.player2score = 0;
+  this.total = 0;
 }
 
 function Player() {
@@ -22,39 +25,46 @@ Game.prototype.toggle = function() {
 }
 
 $(document).ready(function() {
-  var total = 0;
-  var whoseTurn = "player1";
+  var game = new Game();
+  game.total = 0;
   var player1Score = 0;
   var player2Score = 0;
   $("#roll").click(function() {
     var roll = randomInt(1,7);
     $("#die-roll").text(roll);
-    total += roll;
+    game.total += roll;
     if (roll === 1) {
-      if (whoseTurn === "player1") {
-        whoseTurn = "player2";
-        total = 0;
+      if (game.whoseTurn === 1) {
+        game.toggle();
+        game.total = 0;
+        $(".player1").toggleClass("well");
+        $(".player2").toggleClass("well");
       } else {
-        whoseTurn = "player1";
-        total = 0;
+        game.toggle();
+        game.total = 0;
+        $(".player2").toggleClass("well");
+        $(".player1").toggleClass("well");
       }
     }
-    $(".total").text(total);
+    $(".total").text(game.total);
   });
 
   $("#hold").click(function() {
-
-    if (whoseTurn === "player1") {
-      player1Score += total;
+    if (game.whoseTurn === 1) {
+      player1Score += game.total;
       $("#player1").text(player1Score);
-      whoseTurn = "player2";
+      $(".player1").toggleClass("well");
+      $(".player2").toggleClass("well");
+      game.toggle();
     } else {
-      player2Score += total;
+      player2Score += game.total;
       $("#player2").text(player2Score);
-      whoseTurn = "player1";
+      $(".player2").toggleClass("well");
+      $(".player1").toggleClass("well");
+      game.toggle();
     }
-    total = 0;
-    $(".total").text(total);
+    game.total = 0;
+    $(".total").text(game.total);
 
   });
 });
