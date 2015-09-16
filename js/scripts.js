@@ -37,8 +37,8 @@ Game.prototype.toggle = function() {
     $('.playing').hide();
     $('.not-playing').show();
   }
-  $(".player1").toggleClass("well");
-  $(".player2").toggleClass("well");
+  $(".player1").toggleClass("gray");
+  $(".player2").toggleClass("gray");
   this.turnTotal = 0;
   $(".total").text(this.turnTotal);
 }
@@ -53,7 +53,14 @@ Game.prototype.winner = function() {
   }
 }
 
-
+Game.prototype.reset = function() {
+  this.player1.score = 0;
+  this.player2.score = 0;
+  $(".score").text(0);
+  this.turnTotal = 0;
+  $('.playing').show();
+  $('.not-playing').hide();
+}
 
 $(document).ready(function() {
 
@@ -74,12 +81,7 @@ $(document).ready(function() {
   });
   playing = false;
   $('#play-again').click(function() {
-    game.player1.score = 0;
-    game.player2.score = 0;
-    $(".score").text(0);
-    game.turnTotal = 0;
-    $('.playing').show();
-    $('.not-playing').hide();
+    game.reset();
   });
 
 });
