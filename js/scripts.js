@@ -1,6 +1,6 @@
 
 function Game() {
-  this.turn = 0;
+  this.whoseTurn = 1;
 }
 
 function Player() {
@@ -10,6 +10,15 @@ function Player() {
 // From MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+Game.prototype.toggle = function() {
+  if (this.whoseTurn === 1) {
+    this.whoseTurn = 2;
+  } else {
+    this.whoseTurn = 1;
+  }
+
 }
 
 $(document).ready(function() {

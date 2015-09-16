@@ -14,8 +14,15 @@ describe('Player', function () {
 describe('Game', function () {
   it("makes a new game", function() {
     var game = new Game();
-    expect(game.turn).to.equal(0);
-    // expect(game.)
+    expect(game.whoseTurn).to.equal(1);
+  });
+
+  it("switches turns", function() {
+    var game = new Game();
+    game.toggle();
+    expect(game.whoseTurn).to.equal(2);
+    game.toggle();
+    expect(game.whoseTurn).to.equal(1);
   });
 
 });
