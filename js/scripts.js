@@ -44,9 +44,9 @@ Game.prototype.toggle = function() {
 }
 
 Game.prototype.winner = function() {
-  if (this.player1.score >= 10) {
+  if (this.player1.score >= 50) {
     return 1;
-  } else if (this.player2.score >= 10) {
+  } else if (this.player2.score >= 50) {
     return 2;
   } else {
     return false;
@@ -60,6 +60,24 @@ Game.prototype.reset = function() {
   this.turnTotal = 0;
   $('.playing').show();
   $('.not-playing').hide();
+}
+
+Game.prototype.autoTurn = function() {
+  this.turnTotal = this.autoDiceRoll();
+  this.toggle();
+}
+
+Game.prototype.autoDiceRoll = function() {
+  var sum = 0;
+  while (sum <= 15) {
+    var roll = randomInt(1,7);
+    if (roll === 1) {
+      return 0;
+    }
+    sum += roll;
+  }
+  return sum;
+
 }
 
 $(document).ready(function() {
@@ -79,6 +97,11 @@ $(document).ready(function() {
   $("#hold").click(function() {
     game.toggle();
   });
+
+  $("#computer").click(function() {
+    game.autoTurn();
+  });
+
   playing = false;
   $('#play-again').click(function() {
     game.reset();
