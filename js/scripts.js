@@ -14,8 +14,38 @@ function randomInt(min, max) {
 
 $(document).ready(function() {
   var total = 0;
+  var whoseTurn = "player1";
+  var player1Score = 0;
+  var player2Score = 0;
   $("#roll").click(function() {
-    total += randomInt(1,7);
+    var roll = randomInt(1,7);
+    $("#die-roll").text(roll);
+    total += roll;
+    if (roll === 1) {
+      if (whoseTurn === "player1") {
+        whoseTurn = "player2";
+        total = 0;
+      } else {
+        whoseTurn = "player1";
+        total = 0;
+      }
+    }
     $(".total").text(total);
+  });
+
+  $("#hold").click(function() {
+
+    if (whoseTurn === "player1") {
+      player1Score += total;
+      $("#player1").text(player1Score);
+      whoseTurn = "player2";
+    } else {
+      player2Score += total;
+      $("#player2").text(player2Score);
+      whoseTurn = "player1";
+    }
+    total = 0;
+    $(".total").text(total);
+
   });
 });
