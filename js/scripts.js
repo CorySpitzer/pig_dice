@@ -1,7 +1,13 @@
-
-
-function Player() {
+function Player(number) {
   this.score = 0;
+  this.turnTotal = 0;
+  this.number = number;
+}
+
+Player.prototype.takeTurn = function() {
+  this.score += this.turnTotal;
+  $("#player" + player.number).text(player.score);
+  game.toggle();
 }
 
 // From MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -11,30 +17,34 @@ function randomInt(min, max) {
 
 function Game() {
   this.whoseTurn = 1;
-  this.player1score = 0;
-  this.player2score = 0;
-  this.total = 0;
+  this.turnTotal = 0;
+  this.player1 = new Player(1);
+  this.player2 = new Player(2);
 }
 
 Game.prototype.toggle = function() {
   if (this.whoseTurn === 1) {
+    this.player1.score += this.turnTotal;
     this.whoseTurn = 2;
+    $("#player1").text(this.player1.score)
   } else {
+    this.player2.score += this.turnTotal;
     this.whoseTurn = 1;
+    $("#player2").text(this.player2.score)
   }
   if (this.winner()){
     $('#winner').text("Winner" + this.winner());
   }
   $(".player1").toggleClass("well");
   $(".player2").toggleClass("well");
-  this.total = 0;
-  $(".total").text(this.total);
+  this.turnTotal = 0;
+  $(".total").text(this.turnTotal);
 }
 
 Game.prototype.winner = function() {
-  if (this.player1score >= 10) {
+  if (this.player1.score >= 10) {
     return 1;
-  } else if (this.player2score >= 10) {
+  } else if (this.player2.score >= 10) {
     return 2;
   } else {
     return false;
@@ -45,27 +55,18 @@ Game.prototype.winner = function() {
 
 $(document).ready(function() {
   var game = new Game();
-  game.total = 0;
   $("#roll").click(function() {
     var roll = randomInt(1,7);
     $("#die-roll").text(roll);
-    game.total += roll;
+    game.turnTotal += roll;
     if (roll === 1) {
+      game.turnTotal = 0;
       game.toggle();
     }
-    $(".total").text(game.total);
+    $(".total").text(game.turnTotal);
   });
 
   $("#hold").click(function() {
-    if (game.whoseTurn === 1) {
-      game.player1score += game.total;
-      $("#player1").text(game.player1score);
-      game.toggle();
-    } else {
-      game.player2score += game.total;
-      $("#player2").text(game.player2score);
-      game.toggle();
-    }
-
+    game.toggle();
   });
 });
