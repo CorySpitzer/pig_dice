@@ -24,13 +24,18 @@
         </div>
 
         <p>
-          die roll: <span id='die-roll'></span>
+          die roll: <span id='die-roll-img'></span>
+        </p>
+        <p>
+          die roll int: <span id='die-roll-int'></span>
         </p>
         <p>
           total: <span class='total'>0</span>
         </p>
         <div class="playing">
-          <button class="btn btn-warning" id="roll">Roll</button>
+          <!-- <input type="button" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start()"> -->
+
+          <button class="btn btn-warning" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start();">Roll</button>
           <button class="btn btn-success" id="hold">Hold</button>
         </div>
         <div class="not-playing">
@@ -40,7 +45,11 @@
         <h3>
           <span class="not-playing" id='winner'></span>
         </h3>
+
+
       </div>
     </div>
+    <script charset="utf-8">
+    </script>
   </body>
 </html>
