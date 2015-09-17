@@ -27,7 +27,7 @@ Game.prototype.toggle = function() {
   if (this.whoseTurn === 1) {
     this.player1.score += this.turnTotal;
     this.whoseTurn = 2;
-    $("#player1").text(this.player1.score)
+    $("#player1").text(this.player1.score);
     if ((this.whoseTurn) === 2 && (this.player2.auto === true)) {
       this.turnTotal = this.autoDiceRoll();
       this.toggle();
@@ -35,7 +35,7 @@ Game.prototype.toggle = function() {
   } else {
     this.player2.score += this.turnTotal;
     this.whoseTurn = 1;
-    $("#player2").text(this.player2.score)
+    $("#player2").text(this.player2.score);
   }
   if (this.winner()){
     $('#winner').text("Winner" + this.winner());
@@ -76,6 +76,7 @@ Game.prototype.autoDiceRoll = function() {
   var sum = 0;
   while (sum <= 15) {
     var roll = randomInt(1,7);
+
     if (roll === 1) {
       return 0;
     }
