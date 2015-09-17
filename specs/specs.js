@@ -33,6 +33,13 @@ describe('Game', function () {
 
   it("does not set a winner before 100 points", function() {
     var game = new Game();
-    expect(game.winner()).equal(false);
+    expect(game.winner()).to.equal(false);
+  });
+
+  describe('autoDiceRoll', function() {
+    it('gives points', function() {
+      var game = new Game();
+      expect(game.autoDiceRoll()).is.a('number');
+    });
   });
 });
