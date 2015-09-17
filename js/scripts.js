@@ -89,13 +89,18 @@ Game.prototype.autoDiceRoll = function() {
 $(document).ready(function() {
 
   var game = new Game();
-  $("#roll").click(function() {
+  $("#dicebutton").click(function() {
     // D6.dice(1);
     // console.log(D6.dieTotal);
-
+    var roll;
     // var roll = randomInt(1,7);
-    var roll = parseInt(document.getElementById('total'));
-    console.log(roll);
+    if (!globalDieTotal) {
+      roll = 0;
+    } else {
+      var roll = parseInt(globalDieTotal);
+    }
+    debugger;
+    console.log(document.getElementById('die-roll-int').innerHTML);
     // $("#die-roll-int").text(roll);
     game.turnTotal += roll;
     if (roll === 1) {

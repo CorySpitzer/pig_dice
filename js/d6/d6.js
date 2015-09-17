@@ -494,7 +494,7 @@ D6.setButtonLabel = function(buttonLabel) {
 		button.value = buttonLabel;
 	}
 }
-
+var globalDieTotal = "";
 D6.middleManCallback = function(middleManData) {
 	var callback = middleManData.callback;
 	if (typeof callback != "function") {
@@ -509,7 +509,8 @@ D6.middleManCallback = function(middleManData) {
 	for (i=0; i<D6.numDiceShown; ++i) {
 		resultsTotal += results[i];
 		this.dieTotal = resultsTotal;
-		$(".total").text(this.dieTotal);
+		globalDieTotal = resultsTotal;
+		$("#die-roll-int").text(this.dieTotal);
 	}
 	callback(resultsTotal, callbackData, results);
 }
