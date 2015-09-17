@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Pig Dice!</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Roll the Pig Dice dice</h2>
+        <div class="row">
+          <div class="col-md-4 well gray player1">
+            <p>
+              Player 1's Score: <span id='player1' class='score'>0</span>
+            </p>
+          </div>
+          <div class="col-md-4 well player2">
+            <p>
+              Player 2's Score: <span id='player2' class='score'>0</span>
+            </p>
+          </div>
+        </div>
+
+        <p>
+          <span id='die-roll-img'></span>
+        </p>
+        <p>
+          total: <span class='total'>0</span>
+        </p>
+        <div class="playing">
+          <!-- <input type="button" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start()"> -->
+
+          <button class="btn btn-warning" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start();">Roll</button>
+          <button class="btn btn-success" id="hold">Hold</button>
+        </div>
+        <div class="not-playing">
+          <button class="btn btn-primary" id="play-human">Play Human?</button>
+          <button class="btn btn-info" id="play-computer">Play Computer?</button>
+        </div>
+        <h3>
+          <span class="not-playing" id='winner'></span>
+        </h3>
+      </div>
+    </div>
+    <script charset="utf-8">
+    </script>
+  </body>
+</html>

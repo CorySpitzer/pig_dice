@@ -1,21 +1,15 @@
-#show-something {
+.playing {
   display: none;
 }
 
-body {
-  background-image: url("../img/wallpaper.jpg");
+.gray {
+  background-color: rgb(150,150,150);
 }
 
-h1 {
-  display: inline;
-  position: relative;
-  font: 50px Helvetica, Sans-Serif;
-  /*letter-spacing: -5px;*/
-  color: rgba(0,0,255,0.5);
+.die {
+  height: 30px;
 }
 
-h1:after {
-  position: absolute; left: -5px; top: 2px;
-  color: rgba(255,0,0,0.5);
-  content: "NOW THATS WHAT I CALL BANK";
+.jumbotron {
+  background-color: white;
 }
