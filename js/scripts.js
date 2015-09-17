@@ -1,8 +1,13 @@
-function Player(number) {
+function Player(number, smarts) {
   this.score = 0;
   this.turnTotal = 0;
   this.number = number;
   this.auto = false;
+  if (typeof(smarts)==='undefined'){
+    this.smarts = 'human';
+  } else {
+    this.smarts = smarts;
+  }
 }
 
 Player.prototype.takeTurn = function() {
@@ -28,7 +33,7 @@ Game.prototype.toggle = function() {
     this.player1.score += this.turnTotal;
     this.whoseTurn = 2;
     $("#player1").text(this.player1.score)
-    if ((this.whoseTurn) === 2 && (this.player2.auto === true)) {
+    if ((this.whoseTurn) === 2 && (this.player2.smarts === "computer")) {
       this.turnTotal = this.autoDiceRoll();
       this.toggle();
     }
@@ -49,9 +54,10 @@ Game.prototype.toggle = function() {
 }
 
 Game.prototype.winner = function() {
-  if (this.player1.score >= 50) {
+  var winning_score = 100;
+  if (this.player1.score >= winning_score) {
     return 1;
-  } else if (this.player2.score >= 50) {
+  } else if (this.player2.score >= winning_score) {
     return 2;
   } else {
     return false;
@@ -72,9 +78,8 @@ Game.prototype.autoTurn = function() {
   this.toggle();
 }
 
-Game.prototype.autoDiceRoll = function() {
-  var sum = 0;
-  while (sum <= 15) {
+function roll_until(sum, limit) {
+  while (sum <= limit) {
     var roll = randomInt(1,7);
     if (roll === 1) {
       return 0;
@@ -82,7 +87,21 @@ Game.prototype.autoDiceRoll = function() {
     sum += roll;
   }
   return sum;
+}
 
+Game.prototype.autoDiceRoll = function() {
+  var sum = 0;
+  var totalScore = this.player1.score + this.player2.score;
+  if (totalScore < 45) {
+    sum += roll_until(sum, 20)
+  } else {
+    if (this.player1.score > this.player2.score) {
+      sum += roll_until(sum, 25)
+    } else {
+      sum += roll_until(sum, 15)
+    }
+  }
+  return sum;
 }
 
 $(document).ready(function() {
@@ -103,18 +122,14 @@ $(document).ready(function() {
     game.toggle();
   });
 
-  $("#auto").click(function() {
-    game.autoTurn();
-  });
-
-  playing = false;
+  var playing = false;
   $('#play-human').click(function() {
     game.reset();
   });
 
   $('#play-computer').click(function() {
     game.reset();
-    game.player2.auto = true;
+    game.player2.smarts = 'computer';
   });
 
 });

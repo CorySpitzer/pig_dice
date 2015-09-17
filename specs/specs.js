@@ -27,7 +27,7 @@ describe('Game', function () {
 
   it("Allows someone to win", function() {
     var game = new Game();
-    game.player1score = 100;
+    game.player1.score = 100;
     expect(game.winner()).to.equal(1);
   });
 
