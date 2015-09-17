@@ -78,7 +78,8 @@ Game.prototype.autoTurn = function() {
   this.toggle();
 }
 
-function roll_until(sum, limit) {
+function rollUntil(limit) {
+  var sum = 0;
   while (sum <= limit) {
     var roll = randomInt(1,7);
     if (roll === 1) {
@@ -93,12 +94,12 @@ Game.prototype.autoDiceRoll = function() {
   var sum = 0;
   var totalScore = this.player1.score + this.player2.score;
   if (totalScore < 45) {
-    sum += roll_until(sum, 20)
+    sum += rollUntil(20)
   } else {
     if (this.player1.score > this.player2.score) {
-      sum += roll_until(sum, 25)
+      sum += rollUntil(25)
     } else {
-      sum += roll_until(sum, 15)
+      sum += rollUntil(15)
     }
   }
   return sum;

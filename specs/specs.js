@@ -43,3 +43,9 @@ describe('Game', function () {
     });
   });
 });
+
+describe("rollUntil", function() {
+  it("will not return a number that is six more than the limit", function() {
+    expect(rollUntil(15) < 22).to.equal(true);
+  });
+});
