@@ -5,3 +5,11 @@
 .gray {
   background-color: rgb(150,150,150);
 }
+
+.die {
+  height: 30px;
+}
+
+.jumbotron {
+  background-color: white;
+}

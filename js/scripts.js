@@ -67,7 +67,7 @@ D6Animator.getImageBank = function(key, baseUrl) {
       baseUrl = D6Animator.baseUrl;
     if (typeof baseUrl != "string") baseUrl = "";
     imageBank.blank = new Image();
-    imageBank.blank.src = baseUrl + "blank.gif";
+    imageBank.blank.src = baseUrl + "pig.png";
     var i;
     for (i=1; i<7; ++i) {
       whichDie = "die" + i;
@@ -119,7 +119,6 @@ D6Animator.prototype.start = function(result) {
   //sequence[i] gets the image
   sequence[i] = result;
   globalRoll = result;
-  debugger;
   this.result = result;
   this.animate(sequence, state);
 }
@@ -371,7 +370,7 @@ D6AnimBuilder.prototype.genDiceHtml = function(layout, callback, callbackData) {
       ++dieCount;
       if (dieCount > numTotalImgs) break;
       if (this.useImages) {
-        genHtml += "<img id='" + this.id + dieCount + "' class='die' src='" + this.baseUrl + "blank.gif' />";
+        genHtml += "<img id='" + this.id + dieCount + "' class='die' src='" + this.baseUrl + "pig.png' />";
       } else {
         genHtml += "<span id='" + this.id + dieCount + "' class='dieNumber'>&nbsp;</span> ";
       }
@@ -648,7 +647,9 @@ Game.prototype.autoDiceRoll = function() {
   if (totalScore < 45) {
     sum += rollUntil(20)
   } else {
-    if (this.player1.score > this.player2.score) {
+    if (this.player1.score > this.player2.score + 35) {
+      sum += rollUntil(30)
+    } else if (this.player1.score > this.player2.score) {
       sum += rollUntil(25)
     } else {
       sum += rollUntil(15)
@@ -667,6 +668,8 @@ $(document).ready(function() {
       game.toggle();
     }
     $(".total").text(game.turnTotal);
+    // $(".total").addClass("animated fadeIn infinite");
+    // $(".total").addClass("animated fadeOut");
   });
 
   $("#hold").click(function() {
