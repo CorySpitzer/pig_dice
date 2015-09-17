@@ -1,3 +1,5 @@
+
+
 function Player(number) {
   this.score = 0;
   this.turnTotal = 0;
@@ -87,21 +89,15 @@ Game.prototype.autoDiceRoll = function() {
 }
 
 $(document).ready(function() {
-
+  D6.dice(1);
   var game = new Game();
   $("#dicebutton").click(function() {
-    // D6.dice(1);
-    // console.log(D6.dieTotal);
     var roll;
-    // var roll = randomInt(1,7);
     if (!globalDieTotal) {
       roll = 0;
     } else {
-      var roll = parseInt(globalDieTotal);
+      roll = parseInt(globalDieTotal);
     }
-    debugger;
-    console.log(document.getElementById('die-roll-int').innerHTML);
-    // $("#die-roll-int").text(roll);
     game.turnTotal += roll;
     if (roll === 1) {
       game.turnTotal = 0;
