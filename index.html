@@ -4,8 +4,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.11.3.js"></script>
-    <script src="js/scripts.js"></script>
     <script type='text/javascript' src='js/d6/d6.js'></script>
+    <script src="js/scripts.js"></script>
   </head>
   <body>
     <div class="container">
@@ -25,13 +25,18 @@
         </div>
 
         <p>
-          die roll: <span id='die-roll'></span>
+          die roll: <span id='die-roll-img'></span>
+        </p>
+        <p>
+          <span id='die-role-int'></span>
         </p>
         <p>
           total: <span class='total'>0</span>
         </p>
         <div class="playing">
-          <button class="btn btn-warning" id="roll">Roll</button>
+          <!-- <input type="button" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start()"> -->
+
+          <button class="btn btn-warning" id="dicebutton" value="Roll Dice" onclick="D6AnimBuilder.get(&quot;dice&quot;).reset(); D6AnimBuilder.get(&quot;dice&quot;).start();">Roll</button>
           <button class="btn btn-success" id="hold">Hold</button>
           <button class="btn btn-danger" id="auto">Auto</button>
         </div>
@@ -45,9 +50,11 @@
 
         <p>
           <script charset="utf-8">
-            D6.dice(1)
+            D6.dice(1);
+            console.log(D6.dieTotal);
           </script>
         </p>
+        <p><span id="__results"></span></p>
       </div>
     </div>
   </body>

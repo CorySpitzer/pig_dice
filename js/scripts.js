@@ -90,8 +90,13 @@ $(document).ready(function() {
 
   var game = new Game();
   $("#roll").click(function() {
-    var roll = randomInt(1,7);
-    $("#die-roll").text(roll);
+    // D6.dice(1);
+    // console.log(D6.dieTotal);
+
+    // var roll = randomInt(1,7);
+    var roll = parseInt(document.getElementById('total'));
+    console.log(roll);
+    // $("#die-roll-int").text(roll);
     game.turnTotal += roll;
     if (roll === 1) {
       game.turnTotal = 0;

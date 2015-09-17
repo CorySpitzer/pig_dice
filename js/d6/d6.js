@@ -437,7 +437,9 @@ D6Sample.noop = function() { return; }
 // you do, but the following D6 class will still allow you
 // to do quite a lot.
 
-function D6() {}
+function D6() {
+	this.dieTotal = 0;
+}
 
 D6.dice = function(numDice, callback, callbackData, useImages, buttonLabel) {
 	if (typeof useImages == "undefined") useImages = true;
@@ -461,13 +463,13 @@ D6.dice = function(numDice, callback, callbackData, useImages, buttonLabel) {
 		"callback" : callback,
 		"callbackData" : callbackData
 	};
-	var genHtml = "<div id='diceall'>" + builder.genDiceHtml(layout, D6.middleManCallback, middleManData);
-	if (buttonLabel != "none") {
-		genHtml += "<div id='diceform'><form><input type='button' id='dicebutton' value='" + buttonLabel + "' onclick='D6AnimBuilder.get(\"dice\").reset(); D6AnimBuilder.get(\"dice\").start()' /></form></div>";
-	}
-	genHtml += "</div>";
-	D6.genHtml = genHtml;
-	document.write(genHtml);
+	var genHtml = "<div id='diceall'>" + builder.genDiceHtml(layout, D6.middleManCallback, middleManData) + "</div>";
+	// if (buttonLabel != "none") {
+	// 	genHtml += "<div id='diceform'><form><input type='button' id='dicebutton' value='" + buttonLabel + "' onclick='D6AnimBuilder.get(\"dice\").reset(); D6AnimBuilder.get(\"dice\").start()' /></form></div>";
+	// }
+	// genHtml += "</div>";
+
+	$("#die-roll-img").append(genHtml);
 }
 
 D6.roll = function() {
@@ -506,6 +508,8 @@ D6.middleManCallback = function(middleManData) {
 	var i;
 	for (i=0; i<D6.numDiceShown; ++i) {
 		resultsTotal += results[i];
+		this.dieTotal = resultsTotal;
+		$(".total").text(this.dieTotal);
 	}
 	callback(resultsTotal, callbackData, results);
 }
